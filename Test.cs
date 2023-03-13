@@ -13,5 +13,6 @@ public partial class Test : UIConsole
 		base._Ready();
 
 		UIConsole.Test();
+		UIConsole.Test2();
 	}
 }

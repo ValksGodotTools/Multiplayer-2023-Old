@@ -5,7 +5,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
 	<!--<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>-->
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\source\repos\GodotUtils\GodotUtils\GodotUtils.csproj" />
-  </ItemGroup>
 </Project>
