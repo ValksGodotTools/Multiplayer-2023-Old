@@ -10,3 +10,10 @@ Update submodules (may not be required, I don't have enough experience to say fo
 ```
 git submodule update --init --recursive
 ```
+
+Make sure your `.csproj` contains
+```xml
+<ItemGroup>
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+</ItemGroup>
+```
