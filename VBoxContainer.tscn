@@ -1,0 +1,117 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Test2.cs" id="1_1vwy3"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_1vwy3")
+
+[node name="StrengthSlider" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="16" type="PanelContainer" parent="StrengthSlider"]
+layout_mode = 2
+
+[node name="15" type="HBoxContainer" parent="StrengthSlider/16"]
+layout_mode = 2
+
+[node name="12" type="Label" parent="StrengthSlider/16/15"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Strength"
+vertical_alignment = 1
+
+[node name="13" type="HSlider" parent="StrengthSlider/16/15"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.1
+
+[node name="14" type="LineEdit" parent="StrengthSlider/16/15"]
+layout_mode = 2
+text = "0"
+alignment = 1
+editable = false
+
+[node name="PlaceholderOptionButton" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="27" type="PanelContainer" parent="PlaceholderOptionButton"]
+layout_mode = 2
+
+[node name="26" type="HBoxContainer" parent="PlaceholderOptionButton/27"]
+layout_mode = 2
+
+[node name="24" type="Label" parent="PlaceholderOptionButton/27/26"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Placeholder"
+vertical_alignment = 1
+
+[node name="25" type="OptionButton" parent="PlaceholderOptionButton/27/26"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+item_count = 2
+selected = 0
+popup/item_0/text = "Some Test"
+popup/item_0/id = 0
+popup/item_1/text = "Another Option"
+popup/item_1/id = 1
+
+[node name="UsernameLineEdit" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="32" type="PanelContainer" parent="UsernameLineEdit"]
+layout_mode = 2
+
+[node name="31" type="HBoxContainer" parent="UsernameLineEdit/32"]
+layout_mode = 2
+
+[node name="29" type="Label" parent="UsernameLineEdit/32/31"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Username"
+vertical_alignment = 1
+
+[node name="30" type="LineEdit" parent="UsernameLineEdit/32/31"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Cheese"
+max_length = 5
+
+[node name="PlaceholderCheckbox" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="37" type="PanelContainer" parent="PlaceholderCheckbox"]
+layout_mode = 2
+
+[node name="36" type="HBoxContainer" parent="PlaceholderCheckbox/37"]
+layout_mode = 2
+
+[node name="34" type="Label" parent="PlaceholderCheckbox/37/36"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Placeholder"
+vertical_alignment = 1
+
+[node name="35" type="CheckBox" parent="PlaceholderCheckbox/37/36"]
+layout_mode = 2
+disabled = true

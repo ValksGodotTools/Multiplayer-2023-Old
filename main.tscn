@@ -30,41 +30,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_2njif")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
 offset_left = 145.0
 offset_top = 167.0
 offset_right = 551.0
 offset_bottom = 486.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
 script = ExtResource("4_hklnq")
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Temperature"
-vertical_alignment = 1
-
-[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-value = 33.0
-
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "33"
-alignment = 1
-editable = false
