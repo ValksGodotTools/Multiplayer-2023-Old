@@ -59,5 +59,9 @@ public partial class Test2 : Node
 			Logger.Log(v);
 		};
 		AddChild(checkBox);
+
+		var color = new UILabeledColorPickerButton(new LabeledColorPickerButtonOptions());
+		color.ValueChanged += v => Logger.Log(v);
+		AddChild(color);
 	}
 }
