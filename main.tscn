@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://byjknal5tta5r"]
+[gd_scene load_steps=3 format=3 uid="uid://byjknal5tta5r"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_pkkki"]
-[ext_resource type="Script" path="res://Scripts/Test.cs" id="3_2njif"]
-[ext_resource type="Texture2D" uid="uid://dt0ys3bwlfe1i" path="res://icon.svg" id="3_gk0yh"]
-[ext_resource type="Script" path="res://Scripts/Test2.cs" id="4_hklnq"]
+[ext_resource type="Script" path="res://GodotUtils/Console/UIConsole.cs" id="3_j5jxp"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -14,25 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pkkki")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(924, 338)
-scale = Vector2(1.74219, 1.74219)
-texture = ExtResource("3_gk0yh")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 145.0
-offset_top = 167.0
-offset_right = 551.0
-offset_bottom = 486.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
-layout_mode = 2
-script = ExtResource("4_hklnq")
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="UIConsole" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -42,4 +22,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_2njif")
+script = ExtResource("3_j5jxp")
