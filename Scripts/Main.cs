@@ -19,12 +19,14 @@ public partial class Main : Node
 		Server.Start(25565, 100);
 		Client.Start("localhost", 25565);
 
-		await Task.Delay(500);
+		while (!Client.IsConnected)
+			await Task.Delay(1);
 		
-		Client.Send(ClientPacketOpcode.Info, new CPacketInfo
-		{
+		Client.Send(ClientPacketOpcode.Info, new CPacketInfo {
 			Username = "Freddy"
 		});
+
+		Server.Kick(0, DisconnectOpcode.Banned);
 	}
 
 	public override void _PhysicsProcess(double delta)
