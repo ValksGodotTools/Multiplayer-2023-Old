@@ -2,8 +2,8 @@
 
 public class CommandTest : Command
 {
-	public override void Run(string[] args)
-	{
-		Logger.Log("this is a test");
-	}
+    public override void Run(string[] args)
+    {
+        Logger.Log("this is a test");
+    }
 }
