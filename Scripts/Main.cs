@@ -5,13 +5,11 @@ global using System;
 
 namespace Sandbox2;
 
-public partial class Main : Node
+public partial class Main : Manager
 {
-    public static Main Instance { get; set; }
-
     public override async void _Ready()
     {
-        Instance = this;
+        PreInit(Net.Server, Net.Client);
 
         Net.Server.Start(25565, 100);
         Net.Client.Connect("localhost", 25565);
@@ -24,13 +22,7 @@ public partial class Main : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        Logger.Update();
+        base._PhysicsProcess(delta);
         GodotCommands.Update();
-    }
-
-    public override async void _Notification(int what)
-    {
-        if (what == NotificationWMCloseRequest)
-            await Manager.Cleanup(this, Net.Server, Net.Client);
     }
 }
