@@ -1,16 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://byjknal5tta5r"]
+[gd_scene load_steps=7 format=3 uid="uid://byjknal5tta5r"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_pkkki"]
+[ext_resource type="Script" path="res://Scripts/GameMaster.cs" id="2_163p1"]
+[ext_resource type="Texture2D" uid="uid://dt0ys3bwlfe1i" path="res://icon.svg" id="2_g2im7"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="2_vmn2m"]
 [ext_resource type="Script" path="res://GodotUtils/Console/UIConsole.cs" id="3_j5jxp"]
 
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7arx"]
+size = Vector2(125, 125)
+
+[node name="Main" type="Node2D"]
 script = ExtResource("1_pkkki")
+
+[node name="Game Master" type="Node2D" parent="."]
+script = ExtResource("2_163p1")
+
+[node name="Player" type="CharacterBody2D" parent="Game Master"]
+position = Vector2(567, 308)
+script = ExtResource("2_vmn2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Master/Player"]
+shape = SubResource("RectangleShape2D_q7arx")
+
+[node name="Sprite" type="Sprite2D" parent="Game Master/Player"]
+texture = ExtResource("2_g2im7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,88 +1,58 @@
 global using Godot;
 global using GodotUtils;
+global using ENet;
 global using System;
-
-using GodotUtils.Netcode;
-using GodotUtils.Netcode.Server;
-using GodotUtils.Netcode.Client;
-using ENet;
 
 namespace Sandbox2;
 
 public partial class Main : Node
 {
-    public static ENetServer Server { get; set; } = new();
-    public static ENetClient Client { get; set; } = new();
+    public static Main Instance { get; set; }
 
     public override async void _Ready()
     {
-        Server.Start(25565, 100);
-        Client.Start("localhost", 25565);
+        Instance = this;
 
-        while (!Client.IsConnected)
+        Net.Server.Start(25565, 100);
+        Net.Client.Connect("localhost", 25565);
+
+        while (!Net.Client.IsConnected)
             await Task.Delay(1);
-        
-        Client.Send(new CPacketInfo {
-            Username = "Freddy"
-        });
 
-        this.PrintFull();
+        Net.Client.Send(new CPacketJoin { Username = "Fred" } );
+        
+        var otherClient = new GameClient();
+        otherClient.Connect("localhost", 25565);
+
+        while (!otherClient.IsConnected)
+            await Task.Delay(1);
+
+        otherClient.Send(new CPacketJoin { Username = "Bob" });
+        //otherClient.Send(new CPacketPlayerPosition { Position = new Vector2(700, 500)});
     }
 
     public override void _PhysicsProcess(double delta)
     {
         Logger.Update();
-    }
-}
-
-public class SPacketInfo : APacketServer
-{
-    public override void Handle()
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public class SPacketPong : APacketServer
-{
-    public int Data { get; set; }
-
-    public override void Write(PacketWriter writer)
-    {
-        writer.Write(Data);
+        GodotCommands.Update();
     }
 
-    public override void Read(PacketReader reader)
+    public override async void _Notification(int what)
     {
-        Data = reader.ReadInt();
-    }
-
-    public override void Handle()
-    {
-        Logger.Log("[Client] Pong received from server. Value is " + Data);
-    }
-}
-
-public class CPacketInfo : APacketClient
-{
-    public string Username { get; set; }
-
-    public override void Write(PacketWriter writer)
-    {
-        writer.Write(Username);
-    }
-
-    public override void Read(PacketReader reader)
-    {
-        Username = reader.ReadString();
-    }
-
-    public override void Handle(Peer peer)
-    {
-        Logger.Log("Hello from the server. The username is " + Username);
-        Main.Server.Send(new SPacketPong
+        if (what == NotificationWMCloseRequest)
         {
-            Data = 66
-        }, peer);
+            GetTree().AutoAcceptQuit = false;
+            await Cleanup();
+        }
+    }
+
+    public async Task Cleanup()
+    {
+        await Net.Cleanup();
+
+        if (Logger.StillWorking())
+            await Task.Delay(1);
+
+        GetTree().Quit();
     }
 }
