@@ -25,6 +25,11 @@ public class CPacketJoin : APacketClient
             Username = Username
         });
 
+        // ISSUE:
+        // peer.ID logs the same value of '0'
+        // weird solution #1: put Logger.Log(peer.ID). fixes it
+        // weird solution #2: put await Task.Delay(20). fixes it
+
         Net.Server.Send(new SPacketSpawnPlayer { Id = peer.ID }, peer);
     }
 }
@@ -55,7 +60,7 @@ public class SPacketSpawnPlayer : APacketServer
 
     public override void Write(PacketWriter writer)
     {
-        writer.Write(Id);
+        writer.Write((uint)Id);
     }
 
     public override void Read(PacketReader reader)

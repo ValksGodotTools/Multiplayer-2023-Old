@@ -20,15 +20,6 @@ public partial class Main : Node
             await Task.Delay(1);
 
         Net.Client.Send(new CPacketJoin { Username = "Fred" } );
-        
-        var otherClient = new GameClient();
-        otherClient.Connect("localhost", 25565);
-
-        while (!otherClient.IsConnected)
-            await Task.Delay(1);
-
-        otherClient.Send(new CPacketJoin { Username = "Bob" });
-        //otherClient.Send(new CPacketPlayerPosition { Position = new Vector2(700, 500)});
     }
 
     public override void _PhysicsProcess(double delta)

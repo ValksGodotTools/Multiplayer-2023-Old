@@ -12,7 +12,7 @@ public class GameClient : ENetClient
     {
         base.ConcurrentQueues();
 
-        if (GameClientCmds.TryDequeue(out Cmd<GameClientOpcode> cmd))
+        while (GameClientCmds.TryDequeue(out Cmd<GameClientOpcode> cmd))
         {
             
         }

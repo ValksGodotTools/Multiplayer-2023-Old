@@ -9,7 +9,7 @@ public static class GodotCommands
 
     public static void Update()
     {
-        if (GodotCmds.TryDequeue(out Cmd<GodotCmdOpcode> cmd))
+        while (GodotCmds.TryDequeue(out Cmd<GodotCmdOpcode> cmd))
         {
 
         }
