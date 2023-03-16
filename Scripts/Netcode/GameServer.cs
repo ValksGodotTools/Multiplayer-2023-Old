@@ -7,6 +7,11 @@ public class GameServer : ENetServer
     private Dictionary<uint, PlayerData> GetAllPlayersExceptOne(uint id) =>
         Players.Where(x => x.Key != id).ToDictionary(x => x.Key, x => x.Value);
 
+    public GameServer()
+    {
+        UpdateTimer.SetDelay(1000);
+    }
+
     protected override void Update()
     {
         // Loop through all the players
@@ -26,18 +31,6 @@ public class GameServer : ENetServer
                 PlayerPositions = otherPlayerPositions
             }, Peers[player.Key]);
         }
-    }
-
-    protected override void Starting()
-    {
-        UpdateTimer.SetDelay(1000);
-        UpdateTimer.Start();
-    }
-
-    protected override void Stopping()
-    {
-        UpdateTimer.Stop();
-        UpdateTimer.Dispose();
     }
 
     protected override void Disconnected(Event netEvent)
