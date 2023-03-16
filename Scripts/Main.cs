@@ -31,19 +31,6 @@ public partial class Main : Node
     public override async void _Notification(int what)
     {
         if (what == NotificationWMCloseRequest)
-        {
-            GetTree().AutoAcceptQuit = false;
-            await Cleanup();
-        }
-    }
-
-    public async Task Cleanup()
-    {
-        await Net.Cleanup();
-
-        if (Logger.StillWorking())
-            await Task.Delay(1);
-
-        GetTree().Quit();
+            await Manager.Cleanup(this, Net.Server, Net.Client);
     }
 }
