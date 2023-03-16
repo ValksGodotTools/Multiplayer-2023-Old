@@ -27,6 +27,21 @@ texture = ExtResource("2_g2im7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="StartServer" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Server"
+
+[node name="ConnectClient" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect Client"
+
 [node name="UIConsole" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -36,3 +51,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_j5jxp")
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/VBoxContainer/ConnectClient" to="." method="_on_connect_client_pressed"]

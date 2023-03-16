@@ -1,8 +1,7 @@
 ﻿using GodotUtils.Netcode.Client;
 using GodotUtils.Netcode.Server;
-using Sandbox2;
 
-namespace GodotUtils.Netcode;
+namespace Sandbox2;
 
 public static class Net
 {
