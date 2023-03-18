@@ -5,17 +5,58 @@ global using System;
 
 namespace Sandbox2;
 
-public partial class Main : Manager<PlayerData>
+// NuGet Package: https://www.nuget.org/packages/ValksGodotUtils/
+// No longer being maintained or used but kept here just in case
+
+public partial class Main : Node
 {
-    public override void _Ready()
+    public override async void _PhysicsProcess(double delta)
     {
-        PreInit(Net.Server, Net.Client);
+        await Logger.Update();
+        GodotCommands.Update();
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override async void _Notification(int what)
     {
-        base._PhysicsProcess(delta);
-        GodotCommands.Update();
+        if (what == NotificationWMCloseRequest)
+        {
+            GetTree().AutoAcceptQuit = false;
+            await Cleanup();
+        }
+    }
+
+    private async Task Cleanup()
+    {
+        await CleanupNet();
+
+        if (Logger.StillWorking())
+            await Task.Delay(1);
+
+        GetTree().Quit();
+    }
+
+    private async Task CleanupNet()
+    {
+        if (ENetLow.ENetInitialized)
+        {
+            if (Net.Client != null)
+            {
+                Net.Client.Stop();
+
+                while (Net.Client.IsRunning)
+                    await Task.Delay(1);
+            }
+
+            if (Net.Server != null)
+            {
+                Net.Server.Stop();
+
+                while (Net.Server.IsRunning)
+                    await Task.Delay(1);
+            }
+
+            ENet.Library.Deinitialize();
+        }
     }
 
     private void _on_start_server_pressed()
