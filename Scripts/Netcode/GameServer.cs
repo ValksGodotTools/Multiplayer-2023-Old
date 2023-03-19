@@ -18,7 +18,7 @@ public class GameServer : ENetServer
 
     protected override void Update()
     {
-        foreach (var player in Players)
+        /*foreach (var player in Players)
         {
             // Get all the player positions except for 'player'
             var otherPlayerPositions = GetOtherPlayers(player.Key)
@@ -33,11 +33,16 @@ public class GameServer : ENetServer
             {
                 PlayerPositions = otherPlayerPositions
             }, Peers[player.Key]);
-        }
+        }*/
     }
 
     protected override void Disconnected(Event netEvent)
     {
         Players.Remove(netEvent.Peer.ID);
+    }
+
+    protected override void Stopped()
+    {
+        Net.Server = new();
     }
 }

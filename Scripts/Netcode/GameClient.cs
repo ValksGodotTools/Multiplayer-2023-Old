@@ -16,6 +16,11 @@ public class GameClient : ENetClient
 
         }
     }
+
+    protected override void Stopped()
+    {
+        Net.Client = new();
+    }
 }
 
 public enum GameClientOpcode

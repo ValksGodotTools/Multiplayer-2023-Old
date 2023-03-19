@@ -71,6 +71,6 @@ public partial class Main : Node
         while (!Net.Client.IsConnected)
             await Task.Delay(1);
 
-        Net.Client.Send(new CPacketJoin { Username = "Fred" });
+        Net.Client.Send(new CPacketPlayerJoin { Username = "Fred" });
     }
 }
