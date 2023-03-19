@@ -37,8 +37,6 @@ public partial class GameMaster : Node
             return;
         }
 
-        Net.Client.Log(pos);
-
         OtherPlayers[id].Node2D.GlobalPosition = pos;
     }
 

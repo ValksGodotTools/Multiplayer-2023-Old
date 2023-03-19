@@ -61,12 +61,22 @@ public partial class Main : Node
 
     private void _on_start_server_pressed()
     {
-        Net.Server.Start(25565, 100);
+        var ignoredPackets = new Type[]
+        {
+            typeof(CPacketPlayerPosition)
+        };
+
+        Net.Server.Start(25565, 100, ignoredPackets);
     }
 
     private async void _on_connect_client_pressed()
     {
-        Net.Client.Connect("localhost", 25565);
+        var ignoredPackets = new Type[]
+        {
+            typeof(SPacketPlayerPositions),
+        };
+
+        Net.Client.Connect("localhost", 25565, ignoredPackets);
 
         while (!Net.Client.IsConnected)
             await Task.Delay(1);
