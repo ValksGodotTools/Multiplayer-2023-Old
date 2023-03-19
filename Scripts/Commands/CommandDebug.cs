@@ -16,7 +16,7 @@ public class CommandDebug : Command
 
         if (args[0] == "client")
         {
-            Logger.Log(GameMaster.Players.PrintFull());
+            Logger.Log(GameMaster.OtherPlayers.PrintFull());
         }
     }
 }

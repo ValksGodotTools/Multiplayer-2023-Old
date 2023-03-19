@@ -3,7 +3,7 @@
 public partial class GameMaster : Node
 {
     public static uint PeerId { get; set; }
-    public static Dictionary<uint, PlayerData> Players { get; } = new();
+    public static Dictionary<uint, PlayerData> OtherPlayers { get; } = new();
     private static GameMaster Instance { get; set; }
 
     public override void _Ready()
@@ -22,15 +22,15 @@ public partial class GameMaster : Node
 
         Instance.AddChild(sprite);
 
-        Players.Add(id, new PlayerData
+        OtherPlayers.Add(id, new PlayerData
         {
             Node2D = sprite
         });
     }
     public static void UpdatePlayerPosition(uint id, Vector2 pos)
     {
-        if (Players.ContainsKey(id))
-            Players[id].Position = pos;
+        if (OtherPlayers.ContainsKey(id))
+            OtherPlayers[id].Position = pos;
         else
         {
             Net.Client.Log($"{id} does not exist in Players", ConsoleColor.Yellow);
@@ -39,7 +39,7 @@ public partial class GameMaster : Node
 
         Net.Client.Log(pos);
 
-        Players[id].Node2D.GlobalPosition = pos;
+        OtherPlayers[id].Node2D.GlobalPosition = pos;
     }
 
     public override void _PhysicsProcess(double delta)
