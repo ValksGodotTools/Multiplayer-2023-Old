@@ -19,3 +19,5 @@ Update submodules
 ```
 git submodule update --init --recursive
 ```
+
+This requires the latest Godot 4 C# build.
