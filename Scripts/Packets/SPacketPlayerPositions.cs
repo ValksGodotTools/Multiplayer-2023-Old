@@ -28,9 +28,9 @@ public class SPacketPlayerPositions : APacketServer
 
     public override void Handle()
     {
-        /*foreach (var playerPos in PlayerPositions)
+        foreach (var playerPos in PlayerPositions)
         {
             GameMaster.UpdatePlayerPosition(playerPos.Key, playerPos.Value);
-        }*/
+        }
     }
 }

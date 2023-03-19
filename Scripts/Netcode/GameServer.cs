@@ -13,20 +13,19 @@ public class GameServer : ENetServer
 
     public GameServer()
     {
-        UpdateTimer.SetDelay(5000);
+        UpdateTimer.SetDelay(100);
     }
 
     protected override void Update()
     {
+        if (Players.Count < 2)
+            return;
+
         foreach (var player in Players)
         {
             // Get all the player positions except for 'player'
             var otherPlayerPositions = GetOtherPlayers(player.Key)
                 .ToDictionary(x => x.Key, x => x.Value.Position);
-
-            // No other players in the server, don't send anything
-            if (otherPlayerPositions.Count == 0)
-                return;
 
             // Send the 'other player positions' to this player
             Send(new SPacketPlayerPositions
