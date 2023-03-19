@@ -20,22 +20,29 @@ public class CPacketPlayerJoin : APacketClient
         Net.Server.Log($"Player {Username} (ID = {peer.ID}) joined");
 
         // Add this player to the server
-        var players = Net.Server.Players;
-
-        players.Add(peer.ID, new PlayerData
+        Net.Server.Players.Add(peer.ID, new PlayerData
         {
             Username = Username
         });
 
-        // Tell this player that they have joined
-        Net.Server.Log($"Tell this player that they have joined ID={peer.ID}", ConsoleColor.Red);
-        Net.Server.Send(new SPacketPlayerJoin
+        // Tell the joining player about peer id
+        Net.Server.Send(new SPacketPeerId
         {
             Id = peer.ID
         }, peer);
 
-        // Tell all other clients about this player excluding the player that just joined
-        foreach (var player in Net.Server.GetOtherPlayers(peer.ID))
+        // Tell the joining player about all the other players in the server
+        var otherPlayers = Net.Server.GetOtherPlayers(peer.ID);
+        foreach (var player in otherPlayers)
+        {
+            Net.Server.Send(new SPacketPlayerJoin
+            {
+                Id = player.Key
+            }, peer);
+        }
+
+        // Broadcast to everyone (except the joining player) about the joining player
+        foreach (var player in otherPlayers)
         {
             Net.Server.Send(new SPacketPlayerJoin
             {

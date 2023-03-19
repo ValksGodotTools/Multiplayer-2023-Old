@@ -6,7 +6,7 @@ public class SPacketPlayerPositions : APacketServer
 
     public override void Write(PacketWriter writer)
     {
-        writer.Write(PlayerPositions.Count);
+        writer.Write((byte)PlayerPositions.Count);
         foreach (var player in PlayerPositions)
         {
             writer.Write((uint)player.Key);
@@ -28,6 +28,9 @@ public class SPacketPlayerPositions : APacketServer
 
     public override void Handle()
     {
-        
+        /*foreach (var playerPos in PlayerPositions)
+        {
+            GameMaster.UpdatePlayerPosition(playerPos.Key, playerPos.Value);
+        }*/
     }
 }

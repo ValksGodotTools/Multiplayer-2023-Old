@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class SPacketPlayerJoin : APacketServer
+public class SPacketPeerId : APacketServer
 {
     public uint Id { get; set; }
 
@@ -16,6 +16,7 @@ public class SPacketPlayerJoin : APacketServer
 
     public override void Handle()
     {
-        GameMaster.AddPlayer(Id);
+        GameMaster.PeerId = Id;
+        Net.Client.Log("My client ID is " + GameMaster.PeerId);
     }
 }

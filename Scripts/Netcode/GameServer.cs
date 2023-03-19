@@ -13,16 +13,16 @@ public class GameServer : ENetServer
 
     public GameServer()
     {
-        UpdateTimer.SetDelay(1000);
+        UpdateTimer.SetDelay(5000);
     }
 
     protected override void Update()
     {
-        /*foreach (var player in Players)
+        foreach (var player in Players)
         {
             // Get all the player positions except for 'player'
             var otherPlayerPositions = GetOtherPlayers(player.Key)
-            .ToDictionary(x => x.Key, x => x.Value.Position);
+                .ToDictionary(x => x.Key, x => x.Value.Position);
 
             // No other players in the server, don't send anything
             if (otherPlayerPositions.Count == 0)
@@ -33,7 +33,7 @@ public class GameServer : ENetServer
             {
                 PlayerPositions = otherPlayerPositions
             }, Peers[player.Key]);
-        }*/
+        }
     }
 
     protected override void Disconnected(Event netEvent)
