@@ -30,7 +30,9 @@ public class GameServer : ENetServer
                 continue;
 
             // Get all the player positions except for 'player'
+            // Send position to player only if within a distance
             var otherPlayerPositions = GetOtherPlayers(player.Key)
+                .Where(x => x.Value.PrevCurPosition.Previous.DistanceTo(prevPos) < 2000)
                 .ToDictionary(x => x.Key, x => x.Value.PrevCurPosition.Previous);
 
             // Send the 'other player positions' to this player
