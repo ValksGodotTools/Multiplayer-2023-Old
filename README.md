@@ -1,7 +1,11 @@
 # Multiplayer Template
 A starting multiplayer template to be used across all multiplayer games.
 
-Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Games/GodotUtils) instead of this repository would be very nice but that does not seem possible because for example `PlayerData` is a data type that is unique per game. Since `GameServer` and `GameClient` make use of `PlayerData`, they too cannot be defined in the GodotUtils library.
+Achieving multiplayer with [ENet-CSharp](https://github.com/SoftwareGuy/ENet-CSharp) in any game is a big challenge, especially when you have to re-invent the wheel. This multiplayer template along with the GodotUtils it is using aims to solve that problem. There will still be a lot of [code](#code) you have to write but not as much as you would have to if you were doing this all by yourself.
+
+This is by no means a production ready template as there are issues that still need to be squashed and lots of more testing to be done. More features are planned such as syncing chatting, inventory management, and NPC dialogue. But these features seem really far away as the current issues are holding me back.
+
+Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Games/GodotUtils) instead of this repository would be very nice but that does not seem possible because for example `PlayerData` is a data type that is unique per game. Since `GameServer` and `GameClient` make use of `PlayerData`, they too cannot be defined in the GodotUtils library. If you can spot something that should be defined in GodotUtils instead of this repository please tell me!
 
 https://user-images.githubusercontent.com/6277739/226243215-fa5b2267-3d18-4796-8ca5-913bf5a3f135.mp4
 
