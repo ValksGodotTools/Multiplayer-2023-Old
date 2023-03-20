@@ -5,11 +5,11 @@ using GodotUtils.TopDown;
 public partial class Player : PlayerController
 {
     private GTimer NetTimer { get; set; }
-    private Vector2 PrevPos { get; set; }
+    private Vector2 PrevPos { get; set; } = new Vector2(500, 500);
 
     public override void _Ready()
     {
-        NetTimer = new GTimer(this, NetTimerUpdate, 100)
+        NetTimer = new GTimer(this, NetTimerUpdate, Heartbeat.PositionUpdate)
         {
             Loop = true
         };
@@ -24,7 +24,7 @@ public partial class Player : PlayerController
             return;
 
         // only send position if previous position is greater than 5 pixels
-        if (PrevPos.DistanceTo(Position) > 5)
+        if (PrevPos.DistanceTo(Position) > 10)
             Net.Client.Send(new CPacketPlayerPosition
             {
                 Position = Position

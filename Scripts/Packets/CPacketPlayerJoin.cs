@@ -37,7 +37,8 @@ public class CPacketPlayerJoin : APacketClient
         {
             Net.Server.Send(new SPacketPlayerJoin
             {
-                Id = player.Key
+                Id = player.Key,
+                Position = new Vector2(500, 500)
             }, peer);
         }
 
@@ -46,7 +47,8 @@ public class CPacketPlayerJoin : APacketClient
         {
             Net.Server.Send(new SPacketPlayerJoin
             {
-                Id = peer.ID
+                Id = peer.ID,
+                Position = new Vector2(500, 500)
             }, Net.Server.Peers[player.Key]);
         }
     }

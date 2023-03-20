@@ -13,7 +13,7 @@ public class GameServer : ENetServer
 
     public GameServer()
     {
-        UpdateTimer.SetDelay(100);
+        UpdateTimer.SetDelay(Heartbeat.PositionUpdate);
     }
 
     protected override void Update()
@@ -23,9 +23,15 @@ public class GameServer : ENetServer
 
         foreach (var player in Players)
         {
+            var prevPos = player.Value.PrevCurPosition.Previous;
+            var curPos  = player.Value.PrevCurPosition.Current;
+
+            if (prevPos.DistanceTo(curPos) < 10)
+                continue;
+
             // Get all the player positions except for 'player'
             var otherPlayerPositions = GetOtherPlayers(player.Key)
-                .ToDictionary(x => x.Key, x => x.Value.Position);
+                .ToDictionary(x => x.Key, x => x.Value.PrevCurPosition.Previous);
 
             // Send the 'other player positions' to this player
             Send(new SPacketPlayerPositions
