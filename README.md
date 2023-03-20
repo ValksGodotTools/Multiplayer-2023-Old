@@ -151,6 +151,8 @@ git submodule update --init --recursive
 
 This requires the latest Godot 4 C# build.
 
+You do not need to export the project just to get other instances running when testing the multiplayer. Instead you can go to `Godot > Debug > Run Multiple Instances -> Run X Instances`. This saves a ton of time.
+
 ## Contributing
 All contributions are very much welcomed. Please contact me over Discord (`va#9904`) before you start working on something so I can give you the go ahead or say that that is something I'm currently working on and here are some other things you can work on instead.
 
