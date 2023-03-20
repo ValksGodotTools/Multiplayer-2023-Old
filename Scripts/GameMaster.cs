@@ -1,6 +1,4 @@
-﻿using System.Runtime.ConstrainedExecution;
-
-namespace Sandbox2;
+﻿namespace Sandbox2;
 
 public partial class GameMaster : Node
 {
