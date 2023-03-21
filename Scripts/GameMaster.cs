@@ -33,6 +33,12 @@ public partial class GameMaster : Node
         }
     }
 
+    public static void RemovePlayer(uint id)
+    {
+        OtherPlayers[id].Node2D.QueueFree();
+        OtherPlayers.Remove(id);
+    }
+
     public static void AddPlayer(uint id, Vector2 position)
     {
         var texture = GD.Load<Texture2D>("res://icon.svg");

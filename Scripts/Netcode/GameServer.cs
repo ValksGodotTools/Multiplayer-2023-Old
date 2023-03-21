@@ -46,6 +46,16 @@ public class GameServer : ENetServer
     protected override void Disconnected(Event netEvent)
     {
         Players.Remove(netEvent.Peer.ID);
+
+        // Tell everyone about the player that just left the server
+        foreach (var player in Players)
+        {
+            Send(new SPacketPlayerJoinLeave
+            {
+                Id = netEvent.Peer.ID,
+                Joining = false
+            }, Peers[player.Key]);
+        }
     }
 
     protected override void Stopped()
