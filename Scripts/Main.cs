@@ -13,7 +13,6 @@ public partial class Main : Node
     public override async void _PhysicsProcess(double delta)
     {
         await Logger.Update();
-        GodotCommands.Update();
     }
 
     public override async void _Notification(int what)

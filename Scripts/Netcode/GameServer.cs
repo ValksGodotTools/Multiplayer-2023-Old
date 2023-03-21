@@ -18,7 +18,7 @@ public class GameServer : ENetServer
 
     protected override void Update()
     {
-        /*if (Players.Count < 2)
+        if (Players.Count < 2)
             return;
 
         foreach (var player in Players)
@@ -40,7 +40,7 @@ public class GameServer : ENetServer
             {
                 PlayerPositions = otherPlayerPositions
             }, Peers[player.Key]);
-        }*/
+        }
     }
 
     protected override void Disconnected(Event netEvent)
