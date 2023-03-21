@@ -7,6 +7,8 @@ This is by no means a production ready template as there are issues that still n
 
 Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Games/GodotUtils) instead of this repository would be very nice but that does not seem possible because for example `PlayerData` is a data type that is unique per game. Since `GameServer` and `GameClient` make use of `PlayerData`, they too cannot be defined in the GodotUtils library. If you can spot something that should be defined in GodotUtils instead of this repository please tell me!
 
+https://user-images.githubusercontent.com/6277739/226524807-214d2ec3-1197-4f93-9ebb-11d5c81537b2.mp4
+
 https://user-images.githubusercontent.com/6277739/226243215-fa5b2267-3d18-4796-8ca5-913bf5a3f135.mp4
 
 ## Table of Contents
