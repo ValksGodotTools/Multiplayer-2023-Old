@@ -50,10 +50,18 @@ public class GameServer : ENetServer
         // Tell everyone about the player that just left the server
         foreach (var player in Players)
         {
-            Send(new SPacketPlayerJoinLeave
+            Send(new SPacketPlayerJoinLeaves
             {
-                Id = netEvent.Peer.ID,
-                Joining = false
+                Data = new()
+                {
+                    { 
+                        netEvent.Peer.ID, 
+                        new JoinLeaveData 
+                        {
+                            Joining = false
+                        }
+                    }
+                }
             }, Peers[player.Key]);
         }
     }

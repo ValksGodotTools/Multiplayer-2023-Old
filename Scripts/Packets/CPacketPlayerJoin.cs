@@ -33,22 +33,32 @@ public class CPacketPlayerJoin : APacketClient
 
         // Tell the joining player about all the other players in the server
         var otherPlayers = Net.Server.GetOtherPlayers(peer.ID);
-        foreach (var player in otherPlayers)
+
+        Net.Server.Send(new SPacketPlayerJoinLeaves
         {
-            Net.Server.Send(new SPacketPlayerJoinLeave
-            {
-                Id = player.Key,
-                Joining = true,
-                Position = new Vector2(500, 500)
-            }, peer);
-        }
+            Data = otherPlayers.ToDictionary(
+                x => x.Key, 
+                x => new JoinLeaveData
+                {
+                    Joining = true,
+                    Position = new Vector2(500, 500)
+                })
+        }, peer);
 
         // Broadcast to everyone (except the joining player) about the joining player
-        Net.Server.Broadcast(new SPacketPlayerJoinLeave
+        Net.Server.Broadcast(new SPacketPlayerJoinLeaves
         {
-            Id = peer.ID,
-            Joining = true,
-            Position = new Vector2(500, 500)
+            Data = new()
+            {
+                {
+                    peer.ID,
+                    new JoinLeaveData
+                    {
+                        Joining = true,
+                        Position = new Vector2(500, 500)
+                    }
+                }
+            }
         }, Net.Server.Peers[peer.ID]);
     }
 }
