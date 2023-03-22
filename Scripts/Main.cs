@@ -60,6 +60,12 @@ public partial class Main : Node
 
     private void _on_start_server_pressed()
     {
+        if (Net.Server.IsRunning)
+        {
+            Net.Server.Log("The server is running already");
+            return;
+        }
+
         var ignoredPackets = new Type[]
         {
             typeof(CPacketPlayerPosition)
@@ -70,6 +76,12 @@ public partial class Main : Node
 
     private async void _on_connect_client_pressed()
     {
+        if (Net.Client.IsRunning)
+        {
+            Net.Client.Log("The client is running already");
+            return;
+        }
+
         var ignoredPackets = new Type[]
         {
             typeof(SPacketPlayerPositions),
