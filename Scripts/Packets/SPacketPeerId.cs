@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class SPacketPeerId : APacketServer
+public class SPacketPeerId : ServerPacket
 {
     public uint Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class SPacketPlayerJoinLeaves : APacketServer
+public class SPacketPlayerJoinLeaves : ServerPacket
 {
     public Dictionary<uint, JoinLeaveData> Data { get; set; }
 

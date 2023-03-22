@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class CPacketPlayerPosition : APacketClient
+public class CPacketPlayerPosition : ClientPacket
 {
     public Vector2 Position { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class CPacketPlayerJoin : APacketClient
+public class CPacketPlayerJoin : ClientPacket
 {
     public string Username { get; set; }
 

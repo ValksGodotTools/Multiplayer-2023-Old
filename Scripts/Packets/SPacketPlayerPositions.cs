@@ -1,6 +1,6 @@
 ﻿namespace Sandbox2;
 
-public class SPacketPlayerPositions : APacketServer
+public class SPacketPlayerPositions : ServerPacket
 {
     public Dictionary<uint, Vector2> PlayerPositions { get; set; }
 
