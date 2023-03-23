@@ -17,6 +17,25 @@ public partial class GameMaster : Node
     {
         Net.Client.HandlePackets();
 
+        while (Net.Client.GodotCmds.TryDequeue(out Cmd<GodotOpcode> cmd))
+        {
+            var opcode = cmd.Opcode;
+
+            if (opcode == GodotOpcode.Disconnected)
+            {
+                //var disconnectOpcode = (DisconnectOpcode)cmd.Data[0];
+
+                // Remove main player
+                GetNode("Player").QueueFree();
+
+                // Remove other players
+                var ids = OtherPlayers.Select(x => x.Key).ToList();
+
+                for (int i = 0; i < ids.Count(); i++)
+                    RemovePlayer(ids[i]);
+            }
+        }
+
         foreach (var player in OtherPlayers.Values)
         {
             player.PrevCurPosition.UpdateProgress(delta);
