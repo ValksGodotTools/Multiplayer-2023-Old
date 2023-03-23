@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://byjknal5tta5r"]
+[gd_scene load_steps=7 format=3 uid="uid://41imps4hodqf"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_pkkki"]
 [ext_resource type="Script" path="res://Scripts/GameMaster.cs" id="2_163p1"]
 [ext_resource type="Texture2D" uid="uid://dt0ys3bwlfe1i" path="res://icon.svg" id="2_g2im7"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_vmn2m"]
-[ext_resource type="Script" path="res://GodotUtils/Console/UIConsole.cs" id="3_j5jxp"]
+[ext_resource type="PackedScene" uid="uid://c4o3fj5cr8ua7" path="res://GodotUtils/Prefabs/UIConsole.tscn" id="5_ughlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7arx"]
 size = Vector2(125, 125)
@@ -42,15 +42,7 @@ text = "Start Server"
 layout_mode = 2
 text = "Connect Client"
 
-[node name="UIConsole" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("3_j5jxp")
+[node name="UIConsole" parent="CanvasLayer" instance=ExtResource("5_ughlc")]
 
 [connection signal="pressed" from="CanvasLayer/UINet/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="CanvasLayer/UINet/VBoxContainer/ConnectClient" to="." method="_on_connect_client_pressed"]
