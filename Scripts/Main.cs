@@ -10,9 +10,9 @@ namespace Sandbox2;
 
 public partial class Main : Node
 {
-    public override async void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        await Logger.Update();
+        Logger.Update();
     }
 
     public override async void _Notification(int what)
@@ -71,7 +71,10 @@ public partial class Main : Node
             typeof(CPacketPlayerPosition)
         };
 
-        Net.Server.Start(25565, 100, ignoredPackets);
+        Net.Server.Start(25565, 100, new ENetOptions 
+        { 
+            PrintPacketData = false    
+        }, ignoredPackets);
     }
 
     private async void _on_connect_client_pressed()
@@ -87,7 +90,10 @@ public partial class Main : Node
             typeof(SPacketPlayerPositions),
         };
 
-        Net.Client.Connect("localhost", 25565, ignoredPackets);
+        Net.Client.Connect("localhost", 25565, new ENetOptions
+        {
+            PrintPacketData = false    
+        }, ignoredPackets);
 
         while (!Net.Client.IsConnected)
             await Task.Delay(1);
