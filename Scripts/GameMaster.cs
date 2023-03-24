@@ -44,11 +44,9 @@ public partial class GameMaster : Node
 
             var prevPos = prevCur.Previous;
             var curPos = prevCur.Current;
-            var t = (float)prevCur.Progress;
+            var t = prevCur.Progress;
 
-            // If 't' is > 1 then the player will continue moving in the last known direction
-            if (t <= 1)
-                player.Node2D.Position = prevPos.Lerp(curPos, t);
+            player.Node2D.Position = prevPos.Lerp(curPos, t);
         }
     }
 

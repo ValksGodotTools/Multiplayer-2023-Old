@@ -43,6 +43,7 @@ layout_mode = 2
 text = "Connect Client"
 
 [node name="UIConsole" parent="CanvasLayer" instance=ExtResource("5_ughlc")]
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/UINet/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="CanvasLayer/UINet/VBoxContainer/ConnectClient" to="." method="_on_connect_client_pressed"]
