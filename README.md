@@ -7,9 +7,15 @@ This is by no means a production ready template as there are issues that still n
 
 Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Games/GodotUtils) instead of this repository would be very nice but that does not seem possible because for example `PlayerData` is a data type that is unique per game. Since `GameServer` and `GameClient` make use of `PlayerData`, they too cannot be defined in the GodotUtils library. If you can spot something that should be defined in GodotUtils instead of this repository please tell me!
 
-https://user-images.githubusercontent.com/6277739/226524807-214d2ec3-1197-4f93-9ebb-11d5c81537b2.mp4
+I have created a Discord specifically for this project, you can find it here https://discord.gg/dGxUw5gGgJ
 
-https://user-images.githubusercontent.com/6277739/227403319-3a080d97-c801-4fd8-9e68-374e7f8e50bb.mp4
+https://user-images.githubusercontent.com/6277739/226524807-214d2ec3-1197-4f93-9ebb-11d5c81537b2.mp4  
+
+Showcasing 4 client-authorative positions being syncronized
+
+https://user-images.githubusercontent.com/6277739/227403319-3a080d97-c801-4fd8-9e68-374e7f8e50bb.mp4  
+
+Connecting 50 clients takes around 50 seconds
 
 ## Table of Contents
 1. [Code](#code)
@@ -17,6 +23,8 @@ https://user-images.githubusercontent.com/6277739/227403319-3a080d97-c801-4fd8-9
 3. [Contributing](#contributing)
 
 ## Code
+Please note that the following code examples will most likely not be up-to-date.
+
 Start up the server and client
 ```cs
 private void _on_start_server_pressed()
