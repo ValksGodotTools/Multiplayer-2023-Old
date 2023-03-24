@@ -9,7 +9,7 @@ Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Gam
 
 https://user-images.githubusercontent.com/6277739/226524807-214d2ec3-1197-4f93-9ebb-11d5c81537b2.mp4
 
-https://user-images.githubusercontent.com/6277739/226243215-fa5b2267-3d18-4796-8ca5-913bf5a3f135.mp4
+https://user-images.githubusercontent.com/6277739/227403319-3a080d97-c801-4fd8-9e68-374e7f8e50bb.mp4
 
 ## Table of Contents
 1. [Code](#code)
