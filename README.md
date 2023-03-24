@@ -9,6 +9,17 @@ Ideally having all the code defined in [GodotUtils](https://github.com/Valks-Gam
 
 I have created a Discord specifically for this project, you can find it here https://discord.gg/dGxUw5gGgJ
 
+You have to think about many things when setting up multiplayer.
+- Should the server be in a separate repository from the client?
+- Will you compensate for lag compensation? For example someone with a sniper rifle shoots someone on their screen but the server is already ahead and this client is behind. So should the client send a packet with the angle they shot at with the exact timestamp they shot at and send it to the server? Then the server can reconstruct the simulation at that point in time and see if it was valid or not. Of course you don't want the client sending timestamps that are 10 seconds old. So perhaps timestamps will only be valid if they are at most 1 or even 2 seconds old.
+- How are you going to make sure `t` is synced client-side when lerping between the 2nd most recent position and most recent position to display the other clients on each of the clients?
+- Should client position packets be client or server authorative. Client auth means just send raw position. No server simulation. Server auth would mean client just sends inputs and server simulates everything.
+- How are you going to handle error margins. Say the client position is off by some offset from the true server position. You're going to have to slowly lerp to the correct position over time.
+
+In other words you have 2 choices to make for each topic. Each choice has its own benefits and downfalls. But you will never truly know the downfalls if you do not try them yourselves. So my advice, try everything until you find something you like. For example an authorative client means less load on the server and no restrictive movement from the server but there is ample oportunity to send false data to the server to cheat. On the other hand a authorative server means server has to simulate everything and restrictive moement on the clients but impossible for blatant cheating.
+
+For this template I aim to go for everything to be server authorative. The server will be separate from the client. I will look into lag compensation but I may not do it as this isn't a re-creation of CS:GO. Not sure how I will be able to improve the client-side prediction for displaying other clients. And the clients will lerp to whatever the server says the clients true position is. Of course this will make gameplay feel restrictive, I will just have to experiment with `t` a lot.
+
 https://user-images.githubusercontent.com/6277739/226524807-214d2ec3-1197-4f93-9ebb-11d5c81537b2.mp4  
 
 Showcasing 4 client-authorative positions being syncronized
