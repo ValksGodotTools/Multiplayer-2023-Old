@@ -2,38 +2,43 @@
 
 public class GameServer : ENetServer
 {
-    public Dictionary<uint, PlayerData> Players { get; set; } = new();
+    public Dictionary<uint, ServerPlayerData> Players { get; set; } = new();
+    private float Delta { get; } = 1f / 60;
 
     /// <summary>
     /// Get all players except for one player
     /// </summary>
     /// <param name="id">The player id to exclude</param>
-    public Dictionary<uint, PlayerData> GetOtherPlayers(uint id) =>
+    public Dictionary<uint, ServerPlayerData> GetOtherPlayers(uint id) =>
         Players.Where(x => x.Key != id).ToDictionary(x => x.Key, x => x.Value);
 
     public GameServer()
     {
-        UpdateTimer.SetDelay(Heartbeat.PositionUpdate);
+        EmitLoop.SetDelay(Heartbeat.PositionUpdate);
     }
 
-    protected override void Update()
+    protected override void Simulation()
+    {
+        foreach (var player in Players.Values)
+        {
+            var speed = 50;
+            player.Position += (player.Direction.Normalized() * speed * Delta).Lerp(Vector2.Zero, 0.1f);
+        }
+    }
+
+    protected override void Emit()
     {
         if (Players.Count < 2)
             return;
 
         foreach (var player in Players)
         {
-            var prevPos = player.Value.PrevCurPosition.Previous;
-            var curPos  = player.Value.PrevCurPosition.Current;
-
-            if (prevPos.DistanceTo(curPos) < 10)
-                continue;
-
             // Get all the player positions except for 'player'
             // Send position to player only if within a distance
             var otherPlayerPositions = GetOtherPlayers(player.Key)
-                .Where(x => x.Value.PrevCurPosition.Previous.DistanceTo(prevPos) < 2000)
-                .ToDictionary(x => x.Key, x => x.Value.PrevCurPosition.Previous);
+                .ToDictionary(x => x.Key, x => x.Value.Position);
+
+            //GD.Print(otherPlayerPositions.PrintFull());
 
             // Send the 'other player positions' to this player
             Send(new SPacketPlayerPositions

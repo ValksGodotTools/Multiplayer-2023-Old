@@ -16,6 +16,6 @@ public class CPacketPlayerPosition : ClientPacket
 
     public override void Handle(Peer peer)
     {
-        Net.Server.Players[peer.ID].PrevCurPosition.Add(Position);
+        //Net.Server.Players[peer.ID].PrevCurPosition.Add(Position);
     }
 }

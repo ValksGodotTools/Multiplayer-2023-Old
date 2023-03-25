@@ -5,7 +5,11 @@ using GodotUtils.TopDown;
 public partial class Player : PlayerController
 {
     private GTimer NetTimer { get; set; }
-    private Vector2 PrevPos { get; set; } = new Vector2(500, 500);
+
+    private bool PressedUp    { get; set; }
+    private bool PressedDown  { get; set; }
+    private bool PressedLeft  { get; set; }
+    private bool PressedRight { get; set; }
 
     public override void _Ready()
     {
@@ -19,23 +23,40 @@ public partial class Player : PlayerController
 
     private void NetTimerUpdate()
     {
-        // no need to send to other players if there are no other players to send to
-        if (GameMaster.OtherPlayers.Count == 0)
-            return;
+        var horz = Direction.None;
+        var vert = Direction.None;
 
-        // only send position if previous position is greater than 5 pixels
-        if (PrevPos.DistanceTo(Position) > 10)
-            Net.Client.Send(new CPacketPlayerPosition
-            {
-                Position = Position
-            });
+        if (PressedLeft) horz = Direction.Left;
+        if (PressedRight) horz = Direction.Right;
+        if (PressedDown) vert = Direction.Down;
+        if (PressedUp) vert = Direction.Up;
 
-        PrevPos = Position;
+        Net.Client.Send(new CPacketPlayerMove
+        {
+            Horizontal = horz,
+            Vertical = vert
+        });
     }
 
     public override void _PhysicsProcess(double delta)
     {
         if (!UIConsole.IsVisible)
+        {
             base._PhysicsProcess(delta);
+
+            PressedUp    = Input.IsActionPressed("player_move_up");
+            PressedDown  = Input.IsActionPressed("player_move_down");
+            PressedLeft  = Input.IsActionPressed("player_move_left");
+            PressedRight = Input.IsActionPressed("player_move_right");
+        }
     }
+}
+
+public enum Direction
+{
+    None,
+    Up,
+    Down,
+    Left,
+    Right
 }

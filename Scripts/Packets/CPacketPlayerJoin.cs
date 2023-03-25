@@ -20,7 +20,7 @@ public class CPacketPlayerJoin : ClientPacket
         Net.Server.Log($"Player {Username} (ID = {peer.ID}) joined");
 
         // Add this player to the server
-        Net.Server.Players.Add(peer.ID, new PlayerData
+        Net.Server.Players.Add(peer.ID, new ServerPlayerData
         {
             Username = Username
         });

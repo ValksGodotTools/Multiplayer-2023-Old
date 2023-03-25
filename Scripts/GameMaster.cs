@@ -3,7 +3,7 @@
 public partial class GameMaster : Node
 {
     public static uint PeerId { get; set; }
-    public static Dictionary<uint, PlayerData> OtherPlayers { get; } = new();
+    public static Dictionary<uint, ClientPlayerData> OtherPlayers { get; } = new();
     private static GameMaster Instance { get; set; }
 
     public override void _Ready()
@@ -67,7 +67,7 @@ public partial class GameMaster : Node
 
         Instance.AddChild(sprite);
 
-        OtherPlayers.Add(id, new PlayerData
+        OtherPlayers.Add(id, new ClientPlayerData
         {
             Node2D = sprite
         });
