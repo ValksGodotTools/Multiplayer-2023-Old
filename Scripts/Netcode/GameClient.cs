@@ -1,4 +1,4 @@
-﻿namespace Sandbox2;
+﻿namespace Multiplayer;
 
 public class GameClient : ENetClient
 {

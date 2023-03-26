@@ -1,4 +1,4 @@
-namespace Sandbox2;
+namespace Multiplayer;
 
 using GodotUtils.TopDown;
 
@@ -50,13 +50,4 @@ public partial class Player : PlayerController
             PressedRight = Input.IsActionPressed("player_move_right");
         }
     }
-}
-
-public enum Direction
-{
-    None,
-    Up,
-    Down,
-    Left,
-    Right
 }

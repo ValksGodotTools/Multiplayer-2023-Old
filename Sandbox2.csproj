@@ -4,6 +4,7 @@
     <LangVersion>11</LangVersion>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <!--<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>-->
+	<DefineConstants>CLIENT</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ENet-CSharp" Version="2.4.8" />

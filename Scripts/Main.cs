@@ -3,7 +3,7 @@ global using GodotUtils;
 global using ENet;
 global using System;
 
-namespace Sandbox2;
+namespace Multiplayer;
 
 // NuGet Package: https://www.nuget.org/packages/ValksGodotUtils/
 // No longer being maintained or used but kept here just in case
@@ -46,35 +46,8 @@ public partial class Main : Node
                     await Task.Delay(1);
             }
 
-            if (Net.Server != null)
-            {
-                Net.Server.Stop();
-
-                while (Net.Server.IsRunning)
-                    await Task.Delay(1);
-            }
-
             ENet.Library.Deinitialize();
         }
-    }
-
-    private void _on_start_server_pressed()
-    {
-        if (Net.Server.IsRunning)
-        {
-            Net.Server.Log("The server is running already");
-            return;
-        }
-
-        var ignoredPackets = new Type[]
-        {
-            typeof(CPacketPlayerPosition)
-        };
-
-        Net.Server.Start(25565, 100, new ENetOptions 
-        { 
-            PrintPacketData = false    
-        }, ignoredPackets);
     }
 
     private async void _on_connect_client_pressed()
