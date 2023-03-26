@@ -30,7 +30,7 @@ Showcasing 4 client-authorative positions being syncronized
 
 https://user-images.githubusercontent.com/6277739/227403319-3a080d97-c801-4fd8-9e68-374e7f8e50bb.mp4  
 
-Connecting 50 clients takes around 50 seconds
+Connecting 50 clients takes around 50 seconds. Edit: This was solved. Reason is because default min task pool limit is set to 11. Setting it to 100 and boom instant 100 clients connected.
 
 ## Table of Contents
 1. [Code](#code)
