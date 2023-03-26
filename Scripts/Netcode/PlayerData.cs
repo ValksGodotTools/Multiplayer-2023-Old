@@ -13,3 +13,17 @@ public class ServerPlayerData
     public Vector2 Position { get; set; }
     public Vector2 Direction { get; set; }
 }
+
+public enum Direction
+{
+    None,
+    Left,
+    Right,
+    Up,
+    Down
+}
+
+public static class Heartbeat
+{
+    public static int PositionUpdate { get; } = 150;
+}
