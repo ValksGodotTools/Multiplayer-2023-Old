@@ -1,6 +1,3 @@
 [submodule "GodotUtils"]
 	path = GodotUtils
 	url = https://github.com/Valks-Games/GodotUtils
-[submodule "Common"]
-	path = Common
-	url = https://github.com/ValksGodotTools/Common
