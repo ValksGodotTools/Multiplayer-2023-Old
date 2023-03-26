@@ -25,12 +25,6 @@ public class CPacketPlayerJoin : ClientPacket
             Username = Username
         });
 
-        // Tell the joining player about peer id
-        Net.Server.Send(new SPacketPeerId
-        {
-            Id = peer.ID
-        }, peer);
-
         // Tell the joining player about all the other players in the server
         var otherPlayers = Net.Server.GetOtherPlayers(peer.ID);
 

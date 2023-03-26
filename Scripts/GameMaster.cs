@@ -2,7 +2,7 @@
 
 public partial class GameMaster : Node
 {
-    public static uint PeerId { get; set; }
+    //public static uint PeerId { get; set; }
     public static Dictionary<uint, ClientPlayerData> OtherPlayers { get; } = new();
     private static GameMaster Instance { get; set; }
 
@@ -76,7 +76,7 @@ public partial class GameMaster : Node
     {
         if (!OtherPlayers.ContainsKey(id))
         {
-            Net.Client.Log($"{id} does not exist in Players", ConsoleColor.Yellow);
+            Net.Client.Log($"{id} does not exist in Players", LoggerColor.Yellow);
             return;
         }
 
