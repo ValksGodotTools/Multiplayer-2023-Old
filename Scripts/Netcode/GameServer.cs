@@ -2,8 +2,8 @@
 
 public class GameServer : ENetServer
 {
+    private ConcurrentQueue<Cmd<Type>> Cmds { get; } = new();
     public Dictionary<uint, ServerPlayerData> Players { get; set; } = new();
-    private float Delta { get; } = 1f / 60;
 
     /// <summary>
     /// Get all players except for one player
@@ -17,12 +17,24 @@ public class GameServer : ENetServer
         EmitLoop.SetDelay(Heartbeat.PositionUpdate);
     }
 
-    protected override void Simulation()
+    public void Enqueue(Type type, params object[] data) =>
+        Cmds.Enqueue(new Cmd<Type>(type, data));
+
+    protected override void ConcurrentQueues()
     {
-        foreach (var player in Players.Values)
+        base.ConcurrentQueues();
+
+        while (Cmds.TryDequeue(out Cmd<Type> cmd))
         {
-            var speed = 50;
-            player.Position += (player.Direction.Normalized() * speed * Delta).Lerp(Vector2.Zero, 0.1f);
+            if (cmd.Opcode == (typeof(SPacketPlayerPositions)))
+            {
+                var playerPositions = (Dictionary<uint, Vector2>)cmd.Data[0];
+
+                foreach (var player in Players)
+                {
+                    player.Value.Position = playerPositions[player.Key];
+                }
+            }
         }
     }
 

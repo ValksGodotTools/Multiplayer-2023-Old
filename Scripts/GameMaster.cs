@@ -58,10 +58,11 @@ public partial class GameMaster : Node
 
     public static void AddPlayer(uint id, Vector2 position)
     {
-        var texture = GD.Load<Texture2D>("res://icon.svg");
+        //var player = GD.Load<PackedScene>("res://player.tscn").Instantiate<CharacterBody2D>();
+
         var sprite = new Sprite2D
         {
-            Texture = texture,
+            Texture = GD.Load<Texture2D>("res://icon.svg"),
             Position = position
         };
 

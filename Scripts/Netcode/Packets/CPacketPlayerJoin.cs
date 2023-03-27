@@ -25,6 +25,9 @@ public class CPacketPlayerJoin : ClientPacket
             Username = Username
         });
 
+        // Add this player to the simulation
+        Simulation.Enqueue(GetType(), peer.ID, new Vector2(500, 500));
+
         // Tell the joining player about all the other players in the server
         var otherPlayers = Net.Server.GetOtherPlayers(peer.ID);
 

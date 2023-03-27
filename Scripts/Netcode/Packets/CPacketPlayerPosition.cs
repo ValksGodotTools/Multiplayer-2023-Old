@@ -1,5 +1,10 @@
 ﻿namespace Multiplayer;
 
+/*
+ * This packet is no longer being used as everything is going to be
+ * server authorative. This means the client should send their inputs
+ * instead of absolute positions.
+ */
 public class CPacketPlayerPosition : ClientPacket
 {
     public Vector2 Position { get; set; }

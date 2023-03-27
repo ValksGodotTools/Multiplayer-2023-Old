@@ -37,5 +37,7 @@ public class CPacketPlayerMove : ClientPacket
             dir.Y = 0;
 
         player.Direction = dir;
+
+        Simulation.Enqueue(GetType(), peer.ID, dir);
     }
 }

@@ -66,6 +66,8 @@ public partial class Main : Node
             return;
         }
 
+        Simulation.Start();
+
         var ignoredPackets = new Type[]
         {
             typeof(CPacketPlayerPosition)
@@ -73,7 +75,9 @@ public partial class Main : Node
 
         Net.Server.Start(25565, 100, new ENetOptions
         {
-            PrintPacketData = false
+            PrintPacketData = false,
+            PrintPacketSent = false,
+            PrintPacketReceived = false
         }, ignoredPackets);
     }
 
@@ -92,7 +96,9 @@ public partial class Main : Node
 
         Net.Client.Connect("localhost", 25565, new ENetOptions
         {
-            PrintPacketData = false    
+            PrintPacketData = false,
+            PrintPacketReceived = false,
+            PrintPacketSent = false
         }, ignoredPackets);
 
         while (!Net.Client.IsConnected)
