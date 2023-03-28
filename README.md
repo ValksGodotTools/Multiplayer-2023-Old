@@ -1,8 +1,9 @@
 # Multiplayer Template
 A starting multiplayer template to be used across all multiplayer games.
 
+### This project is overwhelming for me. In order for this to work, client sends inputs to the server. Server sends clients inputs to simulation. Simulation sends positions back to server. Server sends positions back to all clients. You have to keep track of so many things, it is overwhelming. I will come back to this project later..
+
 Todo:
-- Stop trying to re-invent the wheel for server simulation. Instead pump all the data to the Godot thread and do the simulation on the Godot thread. Then pump the simulation data back to the server thread. Of course all simulated objects will have to simulated on a separate collision layer.
 - Experiment with client-side prediction more. Instead of lerping from prev to cur. Just lerp from cur to received. Also maybe send ID along with position packet so you know exactly when the positon occured. Because if you have ID you can get time it took for it to be send and be received and based on that you can dynamically calculate the correct `t` value for lerping. I think.
 
 Achieving multiplayer with [ENet-CSharp](https://github.com/SoftwareGuy/ENet-CSharp) in any game is a big challenge, especially when you have to re-invent the wheel. This multiplayer template along with the GodotUtils it is using aims to solve that problem. There will still be a lot of [code](#code) you have to write but not as much as you would have to if you were doing this all by yourself.
