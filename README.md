@@ -1,11 +1,16 @@
 # Multiplayer Template
 A starting multiplayer template to be used across all multiplayer games.
 
-### This project is overwhelming for me. In order for this to work, client sends inputs to the server. Server sends clients inputs to simulation. Simulation sends positions back to server. Server sends positions back to all clients. You have to keep track of so many things, it is overwhelming. I will come back to this project later..
+## Why create this? 
+With Godots multiplayer implementation you are sending the entire function name as a string in each packet. This feels like a huge waste of bandwidth. That is why I'm going down the ENet-CSharp path, where packets contain only 1 or 2 bytes of overhead and then the data that is being sent. If you think you can convince me to stop using ENet-CSharp and use Godots way of doing things instead, feel free to talk to me, my Discord is `va#9904`.
 
-Todo:
+## Project currently at a halt
+This project is overwhelming for me. In order for this to work, client sends inputs to the server. Server sends clients inputs to simulation. Simulation sends positions back to server. Server sends positions back to all clients. You have to keep track of so many things, it is overwhelming. I will come back to this project later..
+
+## Todo
 - Experiment with client-side prediction more. Instead of lerping from prev to cur. Just lerp from cur to received. Also maybe send ID along with position packet so you know exactly when the positon occured. Because if you have ID you can get time it took for it to be send and be received and based on that you can dynamically calculate the correct `t` value for lerping. I think.
 
+## About
 Achieving multiplayer with [ENet-CSharp](https://github.com/SoftwareGuy/ENet-CSharp) in any game is a big challenge, especially when you have to re-invent the wheel. This multiplayer template along with the GodotUtils it is using aims to solve that problem. There will still be a lot of [code](#code) you have to write but not as much as you would have to if you were doing this all by yourself.
 
 This is by no means a production ready template as there are issues that still need to be squashed and lots of more testing to be done. More features are planned such as syncing chatting, inventory management, and NPC dialogue. But these features seem really far away as the current issues are holding me back.
