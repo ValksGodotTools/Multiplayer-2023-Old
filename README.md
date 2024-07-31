@@ -1,8 +1,11 @@
 # Multiplayer Template
-A starting multiplayer template to be used across all multiplayer games.
+A starting multiplayer template for all games that want to use multiplayer.
+
+> [!IMPORTANT]
+> This is not in a production ready state. Do use this thinking you can just create your dream multiplayer game. This project has not been forgotten and will most likely be taken to a brand new repo.
 
 ## Why create this? 
-With Godots multiplayer implementation you are sending the entire function name as a string in each packet. This feels like a huge waste of bandwidth. That is why I'm going down the ENet-CSharp path, where packets contain only 1 or 2 bytes of overhead and then the data that is being sent. If you think you can convince me to stop using ENet-CSharp and use Godots way of doing things instead, feel free to talk to me, my Discord is `va#9904`.
+With Godots multiplayer implementation you are sending the entire function name as a string in each packet. This feels like a huge waste of bandwidth. That is why I'm going down the ENet-CSharp path, where packets contain only 1 or 2 bytes of overhead and then the data that is being sent. If you think you can convince me to stop using ENet-CSharp and use Godots way of doing things instead, feel free to talk to me, my Discord is `valky5`.
 
 ## Project currently at a halt
 This project is overwhelming for me. In order for this to work, client sends inputs to the server. Server sends clients inputs to simulation. Simulation sends positions back to server. Server sends positions back to all clients. You have to keep track of so many things, it is overwhelming. I will come back to this project later..
